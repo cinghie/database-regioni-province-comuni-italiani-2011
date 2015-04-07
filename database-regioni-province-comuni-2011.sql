@@ -2,19 +2,19 @@
 -- Struttura della tabella `comuni`
 --
 
-CREATE TABLE IF NOT EXISTS `comuni` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `comune` varchar(100) NOT NULL,
-  `id_provincia` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_provincia` (`id_provincia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=107017 ;
+CREATE TABLE IF NOT EXISTS comuni (
+	id int(11) NOT NULL AUTO_INCREMENT,
+	id_provincia int(11) NOT NULL,
+	comune varchar(100) NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_provincia) REFERENCES province(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `comuni`
 --
 
-INSERT INTO `comuni` (`id`, `comune`, `id_provincia`) VALUES
+INSERT INTO `comuni` (`id`, `id_provincia`, `comune`) VALUES
 (1001, 1, "Agliè"),
 (1002, 1, "Airasca"),
 (1003, 1, "Ala di Stura"),
@@ -8118,11 +8118,11 @@ INSERT INTO `comuni` (`id`, `comune`, `id_provincia`) VALUES
 
 CREATE TABLE IF NOT EXISTS `province` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `provincia` varchar(100) NOT NULL,
   `id_regione` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_regione` (`id_regione`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=111 ;
+  `provincia` varchar(100) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_regione) REFERENCES regioni(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `province`
@@ -8249,8 +8249,8 @@ INSERT INTO `province` (`id`, `provincia`, `id_regione`) VALUES
 CREATE TABLE IF NOT EXISTS `regioni` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `regione` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `regioni`
@@ -8277,10 +8277,6 @@ INSERT INTO `regioni` (`id`, `regione`) VALUES
 (18, 'Calabria'),
 (19, 'Sicilia'),
 (20, 'Sardegna');
-
---
--- Limiti per le tabelle scaricate
---
 
 --
 -- Limiti per la tabella `comuni`
