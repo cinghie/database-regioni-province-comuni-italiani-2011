@@ -1,2 +1,2 @@
-# database-regioni-province-comuni-italiani-2011
-Database Regioni, Comuni e Province Italiane
+# Database Regioni Province Comuni Italiani 2011
+File SQL con il quale caricare un database con Regioni, Comuni e Province Italiane
